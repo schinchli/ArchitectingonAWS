@@ -6,7 +6,7 @@ This repository contains comprehensive hands-on labs for learning AWS services w
 
 ## 🚀 Available Labs
 
-### [Hands on Labs - Deploying WordPress Content management system on ECS](./Hands%20on%20Labs%20-%20Deploying%20WordPress%20Content%20management%20system%20on%20ECS/)
+### [Deploying WordPress CMS On ECS](./Deploying%20WordPress%20CMS%20On%20ECS/)
 
 A complete hands-on lab for deploying WordPress on AWS ECS Fargate with comprehensive security features:
 
@@ -66,7 +66,7 @@ A complete hands-on lab for deploying WordPress on AWS ECS Fargate with comprehe
 
 2. **Choose a lab**
    ```bash
-   cd "Hands on Labs - Deploying WordPress Content management system on ECS"
+   cd "Deploying WordPress CMS On ECS"
    ```
 
 3. **Start learning**

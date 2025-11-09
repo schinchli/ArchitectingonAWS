@@ -1,0 +1,91 @@
+{
+  "family": "wordpress-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024",
+  "executionRoleArn": "arn:aws:iam::YOUR_ACCOUNT_ID:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "wordpress",
+      "image": "wordpress:latest",
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "protocol": "tcp"
+        }
+      ],
+      "environment": [
+        {
+          "name": "WORDPRESS_DB_HOST",
+          "value": "127.0.0.1:3306"
+        },
+        {
+          "name": "WORDPRESS_DB_USER",
+          "value": "root"
+        },
+        {
+          "name": "WORDPRESS_DB_PASSWORD",
+          "value": "CHANGE_THIS_PASSWORD"
+        },
+        {
+          "name": "WORDPRESS_DB_NAME",
+          "value": "wordpress"
+        },
+        {
+          "name": "WORDPRESS_CONFIG_EXTRA",
+          "value": "define('WP_HOME','https://YOUR_CLOUDFRONT_DOMAIN'); define('WP_SITEURL','https://YOUR_CLOUDFRONT_DOMAIN');"
+        }
+      ],
+      "dependsOn": [
+        {
+          "containerName": "mysql",
+          "condition": "HEALTHY"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/wordpress-validation",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "wordpress"
+        }
+      }
+    },
+    {
+      "name": "mysql",
+      "image": "mysql:5.7",
+      "portMappings": [
+        {
+          "containerPort": 3306,
+          "protocol": "tcp"
+        }
+      ],
+      "environment": [
+        {
+          "name": "MYSQL_ROOT_PASSWORD",
+          "value": "CHANGE_THIS_PASSWORD"
+        },
+        {
+          "name": "MYSQL_DATABASE",
+          "value": "wordpress"
+        }
+      ],
+      "healthCheck": {
+        "command": ["CMD", "mysqladmin", "ping", "-h", "localhost"],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3,
+        "startPeriod": 60
+      },
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/wordpress-validation",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "mysql"
+        }
+      }
+    }
+  ]
+}
