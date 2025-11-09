@@ -1,55 +1,59 @@
-# ArchitectingonAWS
+# Hands-on AWS Labs
 
-> **Production-ready AWS Architecture Projects**
+> **Production-ready AWS Architecture Projects and Learning Labs**
 
-This repository contains enterprise-grade AWS architecture implementations with comprehensive security features and deployment automation.
+This repository contains comprehensive hands-on labs for learning AWS services with real-world implementations.
 
-## 🚀 Projects
+## 🚀 Available Labs
 
-### [WordPress on ECS with Enhanced Security](./wordpress-ecs-private-subnets/)
+### [Hands on Labs - Deploying WordPress Content management system on ECS](./Hands%20on%20Labs%20-%20Deploying%20WordPress%20Content%20management%20system%20on%20ECS/)
 
-A complete production-ready WordPress deployment on AWS ECS Fargate with comprehensive security features:
+A complete hands-on lab for deploying WordPress on AWS ECS Fargate with comprehensive security features:
 
 - **🏗️ Architecture**: ECS Fargate + Private Subnets + NAT Gateway + ALB
 - **🔒 Security**: Private subnet isolation, dedicated security groups, least privilege access
 - **🚀 Automation**: Multi-region deployment scripts with validation
-- **📚 Documentation**: Complete deployment guide with troubleshooting
+- **📚 Learning**: Complete AWS ECS learning guide for beginners
+- **🛡️ Security Audit**: AWS Well-Architected Framework compliance
 
-**Key Features:**
-- Multi-container WordPress + MySQL setup in private subnets
-- Enhanced security with no public IP addresses for containers
-- NAT Gateway for controlled internet access
-- Automated deployment scripts for multiple regions and environments
-- Comprehensive validation and health checking
-- Production security best practices with zero-trust networking
+**Key Learning Outcomes:**
+- Master AWS ECS container orchestration
+- Understand VPC networking and security groups
+- Implement private subnet architecture with NAT Gateway
+- Apply AWS security best practices
+- Deploy production-ready applications
+- Troubleshoot real-world issues
 
-[**→ View Project**](./wordpress-ecs-amazonq/)
+**Perfect for:**
+- AWS beginners learning containerization
+- DevOps engineers implementing ECS
+- Solutions architects designing secure applications
+- Students preparing for AWS certifications
 
-## 🎯 Learning Objectives
+## 🎯 Learning Approach
 
-These projects are designed to teach:
+### Hands-on Experience
+- Real working applications you can deploy and test
+- Step-by-step instructions with explanations
+- Complete automation scripts for multiple environments
+- Comprehensive troubleshooting guides
 
-1. **Modern AWS Architecture Patterns**
-   - Containerized applications with ECS Fargate
-   - Global content delivery with CloudFront
-   - Application security with WAF
+### Production-Ready
+- AWS Well-Architected Framework compliance
+- Security best practices implementation
+- Multi-region deployment capability
+- Cost optimization strategies
 
-2. **Security Best Practices**
-   - Defense in depth strategies
-   - Network isolation and access control
-   - Monitoring and incident response
-
-3. **Infrastructure Automation**
-   - AWS CLI deployment scripts
-   - Infrastructure as Code principles
-   - Automated testing and validation
+### Beginner-Friendly
+- No prior AWS experience required
+- Complete learning guides with fundamentals
+- Visual diagrams and explanations
+- Progressive skill building
 
 ## 🛠️ Prerequisites
 
-To use these projects, you'll need:
-
 - AWS CLI configured with appropriate permissions
-- Basic understanding of AWS services
+- Basic understanding of command line operations
 - Git for cloning repositories
 
 ## 📚 Getting Started
@@ -60,19 +64,20 @@ To use these projects, you'll need:
    cd ArchitectingonAWS
    ```
 
-2. **Choose a project**
+2. **Choose a lab**
    ```bash
-   cd wordpress-ecs-amazonq
+   cd "Hands on Labs - Deploying WordPress Content management system on ECS"
    ```
 
-3. **Follow the deployment guide**
-   - Each project includes detailed README with step-by-step instructions
-   - All configuration files are provided and sanitized
-   - Security best practices are documented
+3. **Start learning**
+   - Read `AWS_ECS_LEARNING_GUIDE.md` for comprehensive AWS fundamentals
+   - Follow `README.md` for step-by-step deployment
+   - Use automation scripts for quick deployment
+   - Review security audit and best practices
 
 ## 🔒 Security Notice
 
-All projects in this repository:
+All labs in this repository:
 - ✅ **No AWS credentials exposed** - All sensitive data sanitized
 - ✅ **Production-ready security** - Best practices implemented
 - ✅ **Template-based configs** - Easy customization for your environment
@@ -97,7 +102,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [AWS Architecture Center](https://aws.amazon.com/architecture/)
 - [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/)
 - [AWS Security Best Practices](https://aws.amazon.com/security/security-resources/)
+- [AWS ECS Documentation](https://docs.aws.amazon.com/ecs/)
 
 ---
 
-**Built with ❤️ and AWS best practices**
+**Built with ❤️ and AWS best practices for hands-on learning**
