@@ -158,6 +158,26 @@ After deployment completes (5-10 minutes):
 - ✅ **Multi-AZ Deployment**: High availability across availability zones
 - ✅ **Network Isolation**: Defense in depth with multiple security layers
 - ✅ **Zero Trust Model**: No implicit trust between network segments
+- ⚠️ **Security Audit**: Comprehensive AWS Well-Architected review completed
+
+### Security Audit Results
+**Current Security Score: B+ (Good with room for improvement)**
+
+**Critical Improvements Needed:**
+- 🔴 **HTTPS/TLS Encryption**: Currently HTTP only
+- 🔴 **Database Security**: Credentials need Secrets Manager
+- 🔴 **Data Encryption**: Enable encryption at rest and in transit
+- 🟡 **Threat Detection**: GuardDuty and CloudTrail recommended
+- 🟡 **WAF Protection**: Application firewall needed
+
+**Security Enhancement Available:**
+```bash
+# Run comprehensive security enhancements
+./security-enhancements.sh us-east-1 prod
+
+# View detailed security audit
+cat SECURITY_AUDIT.md
+```
 
 ## 🛠️ Deployment Guide
 
@@ -376,7 +396,7 @@ All configuration files and deployment scripts are provided in this repository:
 
 ## 🔒 Security Best Practices
 
-### Implemented Security Measures
+### Current Implementation
 1. **Network Security**: Private subnets with no public IP addresses for containers
 2. **Access Control**: Dedicated security groups with least privilege access
 3. **Internet Access**: Controlled outbound access through NAT Gateway
@@ -384,14 +404,59 @@ All configuration files and deployment scripts are provided in this repository:
 5. **Monitoring**: CloudWatch logs for all components
 6. **High Availability**: Multi-AZ deployment for resilience
 
-### Production Recommendations
-1. **HTTPS/TLS**: Add SSL/TLS termination at ALB with ACM certificate
-2. **WAF Integration**: Add AWS WAF for application-layer protection
-3. **Database**: Replace MySQL container with RDS in private subnets
-4. **Secrets**: Use AWS Secrets Manager for database credentials
+### AWS Well-Architected Security Audit
+A comprehensive security audit has been conducted following AWS Well-Architected Framework principles:
+
+**Security Score: B+ (37/60 points)**
+
+**Critical Security Gaps Identified:**
+- ❌ No HTTPS/TLS encryption (HTTP only)
+- ❌ Database credentials in plain text
+- ❌ No data encryption at rest
+- ❌ Missing threat detection (GuardDuty)
+- ❌ No API logging (CloudTrail)
+- ❌ No WAF protection
+
+### Security Enhancement Script
+Run the automated security enhancement script to address critical gaps:
+
+```bash
+# Apply AWS Well-Architected security improvements
+./security-enhancements.sh us-east-1 prod
+
+# This will implement:
+# - CloudTrail API logging
+# - GuardDuty threat detection  
+# - KMS encryption keys
+# - Secrets Manager for credentials
+# - WAF with OWASP rules
+# - Enhanced IAM policies
+# - Security monitoring alarms
+```
+
+### Production Security Recommendations
+1. **HTTPS/TLS**: Add SSL certificate and redirect HTTP to HTTPS
+2. **WAF Integration**: Deploy AWS WAF for application-layer protection
+3. **Database Security**: Migrate to RDS with encryption at rest
+4. **Secrets Management**: Use AWS Secrets Manager for all credentials
 5. **VPC Flow Logs**: Enable for network traffic monitoring
-6. **CloudTrail**: Enable for API call auditing
+6. **CloudTrail**: Enable for comprehensive API call auditing
 7. **Container Scanning**: Use ECR image scanning for vulnerabilities
+8. **Incident Response**: Implement automated security response procedures
+
+### Compliance Considerations
+- **SOC 2**: Requires encryption and comprehensive monitoring
+- **PCI DSS**: Not currently compliant due to encryption gaps
+- **GDPR**: Data protection requirements need encryption at rest
+- **HIPAA**: Additional security controls required for healthcare data
+
+### Security Monitoring
+After implementing security enhancements, monitor:
+- CloudWatch security alarms
+- GuardDuty findings
+- Security Hub compliance status
+- WAF blocked requests
+- VPC Flow Logs anomalies
 
 ## 🎯 Access Your WordPress
 
