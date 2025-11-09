@@ -99,6 +99,22 @@ graph TB
     class DS,VS automation
 ```
 
+## 🎓 Learning Resources
+
+### New to AWS ECS?
+**📚 Complete Learning Guide Available**: `AWS_ECS_LEARNING_GUIDE.md`
+
+This comprehensive guide covers:
+- **AWS Fundamentals**: Cloud computing basics and core services
+- **Container Concepts**: Docker, images, and containerization
+- **ECS Deep Dive**: Clusters, services, tasks, and Fargate
+- **Networking Essentials**: VPC, subnets, security groups, load balancers
+- **Security Fundamentals**: IAM, encryption, best practices
+- **Hands-on Tutorial**: Step-by-step deployment walkthrough
+- **Troubleshooting**: Common issues and debugging techniques
+
+**Perfect for beginners** - No prior AWS experience required!
+
 ## 🚀 Quick Start
 
 ### Prerequisites
