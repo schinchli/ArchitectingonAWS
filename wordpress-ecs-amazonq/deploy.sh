@@ -90,12 +90,18 @@ TG_ARN=$(aws elbv2 create-target-group \
   --vpc-id $VPC_ID \
   --target-type ip \
   --health-check-path / \
-  --matcher HttpCode=200,302 \
   --health-check-interval-seconds 10 \
   --health-check-timeout-seconds 2 \
   --healthy-threshold-count 2 \
   --region $REGION \
   --query 'TargetGroups[0].TargetGroupArn' --output text)
+
+# Modify target group to accept 200,302 responses
+aws elbv2 modify-target-group \
+  --target-group-arn $TG_ARN \
+  --matcher '{"HttpCode":"200,302"}' \
+  --region $REGION
+
 echo "🎯 Target Group ARN: $TG_ARN"
 
 # Step 9: Create Listener
