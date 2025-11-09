@@ -49,7 +49,7 @@ aws ec2 authorize-security-group-ingress \
 ```bash
 # Get subnet CIDR blocks for ALB
 SUBNET_CIDRS=$(aws ec2 describe-subnets \
-  --subnet-ids $SUBNET_ID_1 $SUBNET_ID_2 \
+  --YOUR_SUBNET_ID $SUBNET_ID_1 $SUBNET_ID_2 \
   --query "Subnets[].CidrBlock" --output text --region us-east-1)
 
 # Allow health checks from ALB subnets

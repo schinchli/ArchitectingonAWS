@@ -8,7 +8,7 @@
 │                         LIVE DEMO                              │
 └─────────────────────────────────────────────────────────────────┘
 
-🌐 URL: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com
+🌐 URL: http://YOUR_ALB_DNS_NAME
 📊 Status: ✅ ACTIVE AND RESPONDING
 🔒 Architecture: Private Subnet + Enhanced Security
 ⚡ Platform: AWS ECS Fargate
@@ -17,7 +17,7 @@
 ## 📱 Live Application Screenshots
 
 ### 1. WordPress Installation Page
-**URL**: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com/wp-admin/install.php
+**URL**: http://YOUR_ALB_DNS_NAME/wp-admin/install.php
 
 ```html
 <!DOCTYPE html>
@@ -76,10 +76,10 @@ Location: /wp-admin/install.php
 ┌─────────────────────────────────────────────────────────────────┐
 │                    NETWORK CONFIGURATION                        │
 ├─────────────────────────────────────────────────────────────────┤
-│ VPC:            vpc-02ba04a37938bda68                          │
-│ Private Subnet: subnet-04f22887578276242 (us-east-1a)         │
-│ Private Subnet: subnet-0c0e446b6fbee9037 (us-east-1b)         │
-│ Security Group: sg-0af75bfdf1a9ce600                          │
+│ VPC:            YOUR_VPC_ID                          │
+│ Private Subnet: YOUR_SUBNET_ID (us-east-1a)         │
+│ Private Subnet: YOUR_SUBNET_ID (us-east-1b)         │
+│ Security Group: YOUR_SECURITY_GROUP_ID                          │
 │ Public IP:      ❌ DISABLED (Private Architecture)             │
 │ Internet:       ✅ Via NAT Gateway                             │
 └─────────────────────────────────────────────────────────────────┘
@@ -88,17 +88,17 @@ Location: /wp-admin/install.php
 │                   LOAD BALANCER STATUS                         │
 ├─────────────────────────────────────────────────────────────────┤
 │ Name:           wordpress-alb                                  │
-│ DNS:            wordpress-alb-1543208177.us-east-1.elb...     │
+│ DNS:            YOUR_ALB_DNS_NAME                          │
 │ Scheme:         internet-facing                                │
 │ State:          ✅ active                                       │
-│ Security Group: sg-0935e322c5774b1ed                          │
+│ Security Group: YOUR_SECURITY_GROUP_ID                          │
 │ Zones:          us-east-1a, us-east-1b                        │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ## 🔍 Live Task Details
 
-**Current Running Task**: `98628e1f43874ff19fa5b3bef14d9d61`
+**Current Running Task**: `YOUR_TASK_ID`
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -134,13 +134,13 @@ Location: /wp-admin/install.php
 
 ### Connectivity Test
 ```bash
-$ curl -I http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com
+$ curl -I http://YOUR_ALB_DNS_NAME
 ✅ HTTP/1.1 302 Found - WordPress responding correctly
 ```
 
 ### Content Verification
 ```bash
-$ curl -L http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com | grep -i wordpress
+$ curl -L http://YOUR_ALB_DNS_NAME | grep -i wordpress
 ✅ <title>WordPress › Installation</title>
 ✅ <p id="logo">WordPress</p>
 ```
@@ -185,7 +185,7 @@ User → Internet → ALB → Private Subnet → WordPress Container
 
 ### Step 3: Access Admin Dashboard
 ```
-URL: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com/wp-admin/
+URL: http://YOUR_ALB_DNS_NAME/wp-admin/
 ✅ WordPress admin panel accessible
 ```
 
@@ -215,14 +215,14 @@ cat SECURITY_AUDIT.md
 ## 📞 Access Information
 
 **🌐 Live Application URLs:**
-- **Main Site**: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com
-- **Installation**: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com/wp-admin/install.php
-- **Admin Panel**: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com/wp-admin/ (after setup)
+- **Main Site**: http://YOUR_ALB_DNS_NAME
+- **Installation**: http://YOUR_ALB_DNS_NAME/wp-admin/install.php
+- **Admin Panel**: http://YOUR_ALB_DNS_NAME/wp-admin/ (after setup)
 
 **🔧 AWS Resources:**
 - **Region**: us-east-1
 - **ECS Cluster**: wordpress-cluster
-- **Load Balancer**: wordpress-alb-1543208177.us-east-1.elb.amazonaws.com
+- **Load Balancer**: YOUR_ALB_DNS_NAME
 
 ---
 

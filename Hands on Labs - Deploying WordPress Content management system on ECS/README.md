@@ -209,13 +209,13 @@ VPC_ID=$(aws ec2 describe-vpcs --filters "Name=is-default,Values=true" --query "
 
 # Create private subnets
 aws ec2 create-subnet \
-  --vpc-id $VPC_ID \
+  --YOUR_VPC_ID $VPC_ID \
   --cidr-block 172.31.96.0/20 \
   --availability-zone us-east-1a \
   --region us-east-1
 
 aws ec2 create-subnet \
-  --vpc-id $VPC_ID \
+  --YOUR_VPC_ID $VPC_ID \
   --cidr-block 172.31.112.0/20 \
   --availability-zone us-east-1b \
   --region us-east-1
@@ -224,14 +224,14 @@ aws ec2 create-subnet \
 ### Step 3: Create NAT Gateway
 ```bash
 # Get public subnet ID
-PUBLIC_SUBNET_ID=$(aws ec2 describe-subnets --filters "Name=vpc-id,Values=$VPC_ID" "Name=map-public-ip-on-launch,Values=true" --query "Subnets[0].SubnetId" --output text --region us-east-1)
+PUBLIC_SUBNET_ID=$(aws ec2 describe-subnets --filters "Name=YOUR_VPC_ID,Values=$VPC_ID" "Name=map-public-ip-on-launch,Values=true" --query "Subnets[0].SubnetId" --output text --region us-east-1)
 
 # Allocate Elastic IP
 aws ec2 allocate-address --domain vpc --region us-east-1
 
 # Create NAT Gateway (replace EIP_ALLOC_ID with your allocation ID)
-aws ec2 create-nat-gateway \
-  --subnet-id $PUBLIC_SUBNET_ID \
+aws ec2 create-YOUR_NAT_GATEWAY_ID \
+  --YOUR_SUBNET_ID $PUBLIC_SUBNET_ID \
   --allocation-id $EIP_ALLOC_ID \
   --region us-east-1
 ```
@@ -239,23 +239,23 @@ aws ec2 create-nat-gateway \
 ### Step 4: Configure Route Table
 ```bash
 # Create private route table
-aws ec2 create-route-table --vpc-id $VPC_ID --region us-east-1
+aws ec2 create-route-table --YOUR_VPC_ID $VPC_ID --region us-east-1
 
 # Add route to NAT Gateway (replace NAT_GATEWAY_ID and ROUTE_TABLE_ID)
 aws ec2 create-route \
   --route-table-id $ROUTE_TABLE_ID \
   --destination-cidr-block 0.0.0.0/0 \
-  --nat-gateway-id $NAT_GATEWAY_ID \
+  --YOUR_NAT_GATEWAY_ID-id $NAT_GATEWAY_ID \
   --region us-east-1
 
 # Associate private subnets with route table
 aws ec2 associate-route-table \
-  --subnet-id $PRIVATE_SUBNET_1_ID \
+  --YOUR_SUBNET_ID $PRIVATE_SUBNET_1_ID \
   --route-table-id $ROUTE_TABLE_ID \
   --region us-east-1
 
 aws ec2 associate-route-table \
-  --subnet-id $PRIVATE_SUBNET_2_ID \
+  --YOUR_SUBNET_ID $PRIVATE_SUBNET_2_ID \
   --route-table-id $ROUTE_TABLE_ID \
   --region us-east-1
 ```
@@ -266,14 +266,14 @@ aws ec2 associate-route-table \
 aws ec2 create-security-group \
   --group-name wordpress-alb-sg \
   --description "Security group for WordPress ALB" \
-  --vpc-id $VPC_ID \
+  --YOUR_VPC_ID $VPC_ID \
   --region us-east-1
 
 # Create container security group
 aws ec2 create-security-group \
   --group-name wordpress-container-sg \
   --description "Security group for WordPress containers" \
-  --vpc-id $VPC_ID \
+  --YOUR_VPC_ID $VPC_ID \
   --region us-east-1
 
 # Allow HTTP access to ALB from internet
@@ -340,7 +340,7 @@ aws ecs register-task-definition \
 ### Step 9: Create Application Load Balancer
 ```bash
 # Get public subnet IDs
-PUBLIC_SUBNET_IDS=$(aws ec2 describe-subnets --filters "Name=vpc-id,Values=$VPC_ID" "Name=map-public-ip-on-launch,Values=true" --query "Subnets[].SubnetId" --output text --region us-east-1)
+PUBLIC_SUBNET_IDS=$(aws ec2 describe-subnets --filters "Name=YOUR_VPC_ID,Values=$VPC_ID" "Name=map-public-ip-on-launch,Values=true" --query "Subnets[].SubnetId" --output text --region us-east-1)
 
 # Create ALB in public subnets
 aws elbv2 create-load-balancer \
@@ -356,7 +356,7 @@ aws elbv2 create-target-group \
   --name wordpress-tg \
   --protocol HTTP \
   --port 80 \
-  --vpc-id $VPC_ID \
+  --YOUR_VPC_ID $VPC_ID \
   --target-type ip \
   --health-check-path / \
   --matcher HttpCode=200,302 \
@@ -369,7 +369,7 @@ aws elbv2 create-target-group \
 ### Step 11: Create ECS Service
 ```bash
 # Get private subnet IDs
-PRIVATE_SUBNET_IDS=$(aws ec2 describe-subnets --filters "Name=vpc-id,Values=$VPC_ID" "Name=cidr-block,Values=172.31.96.0/20,172.31.112.0/20" --query "Subnets[].SubnetId" --output text --region us-east-1)
+PRIVATE_SUBNET_IDS=$(aws ec2 describe-subnets --filters "Name=YOUR_VPC_ID,Values=$VPC_ID" "Name=cidr-block,Values=172.31.96.0/20,172.31.112.0/20" --query "Subnets[].SubnetId" --output text --region us-east-1)
 
 # Create service in private subnets
 aws ecs create-service \
@@ -508,7 +508,7 @@ aws ecs describe-services --cluster wordpress-cluster --services wordpress-servi
 aws elbv2 describe-target-health --target-group-arn $TARGET_GROUP_ARN --region us-east-1
 
 # Check NAT Gateway status
-aws ec2 describe-nat-gateways --region us-east-1
+aws ec2 describe-YOUR_NAT_GATEWAY_ID --region us-east-1
 
 # Check route table configuration
 aws ec2 describe-route-tables --region us-east-1

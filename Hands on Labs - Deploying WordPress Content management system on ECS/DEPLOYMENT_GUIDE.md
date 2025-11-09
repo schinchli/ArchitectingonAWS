@@ -120,11 +120,11 @@ aws elbv2 delete-load-balancer --load-balancer-arn ALB_ARN --region REGION
 aws elbv2 delete-target-group --target-group-arn TG_ARN --region REGION
 
 # Delete NAT Gateway and Elastic IP
-aws ec2 delete-nat-gateway --nat-gateway-id NAT_GATEWAY_ID --region REGION
+aws ec2 delete-YOUR_NAT_GATEWAY_ID --YOUR_NAT_GATEWAY_ID-id NAT_GATEWAY_ID --region REGION
 aws ec2 release-address --allocation-id EIP_ALLOCATION_ID --region REGION
 
 # Delete subnets and security groups
-aws ec2 delete-subnet --subnet-id SUBNET_ID --region REGION
+aws ec2 delete-subnet --YOUR_SUBNET_ID SUBNET_ID --region REGION
 aws ec2 delete-security-group --group-id SG_ID --region REGION
 ```
 

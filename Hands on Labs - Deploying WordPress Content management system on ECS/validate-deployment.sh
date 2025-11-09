@@ -14,13 +14,13 @@ TG_NAME="wordpress-tg-${ENV}"
 
 echo "🧪 Validating WordPress ECS deployment in region: $REGION"
 
-# Use existing private subnets
-PRIVATE_SUBNET_1="subnet-0f8bd7bd77f1b3eb2"  # 172.31.128.0/20
-PRIVATE_SUBNET_2="subnet-093f952ba46ff7906"  # 172.31.144.0/20
+# Use existing private subnets (replace with your actual subnet IDs)
+PRIVATE_SUBNET_1="subnet-XXXXXXXXXXXXXXXXX"  # Replace with your private subnet 1
+PRIVATE_SUBNET_2="subnet-XXXXXXXXXXXXXXXXX"  # Replace with your private subnet 2
 
-# Use existing security groups from main deployment
-ALB_SG_ID="sg-0935e322c5774b1ed"
-CONTAINER_SG_ID="sg-0af75bfdf1a9ce600"
+# Use existing security groups from main deployment (replace with your actual security group IDs)
+ALB_SG_ID="sg-XXXXXXXXXXXXXXXXX"      # Replace with your ALB security group ID
+CONTAINER_SG_ID="sg-XXXXXXXXXXXXXXXXX" # Replace with your container security group ID
 
 echo "📋 Using existing infrastructure:"
 echo "  - Private Subnets: $PRIVATE_SUBNET_1, $PRIVATE_SUBNET_2"

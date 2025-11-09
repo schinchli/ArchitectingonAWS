@@ -3,7 +3,7 @@
 ## 🚀 Application Overview
 
 **Deployment Status**: ✅ **ACTIVE AND RUNNING**
-**WordPress URL**: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com
+**WordPress URL**: http://YOUR_ALB_DNS_NAME
 **Architecture**: Private Subnet ECS Fargate with Enhanced Security
 
 ## 📊 Service Status Summary
@@ -20,21 +20,21 @@
 
 ### Network Configuration
 - **Private Subnets**: 
-  - subnet-04f22887578276242 (us-east-1a)
-  - subnet-0c0e446b6fbee9037 (us-east-1b)
-- **Security Group**: sg-0af75bfdf1a9ce600
+  - YOUR_SUBNET_ID (us-east-1a)
+  - YOUR_SUBNET_ID (us-east-1b)
+- **Security Group**: YOUR_SECURITY_GROUP_ID
 - **Public IP**: DISABLED (Private subnet architecture)
 
 ### Load Balancer Details
 - **ALB Name**: wordpress-alb
-- **DNS Name**: wordpress-alb-1543208177.us-east-1.elb.amazonaws.com
+- **DNS Name**: YOUR_ALB_DNS_NAME
 - **Scheme**: internet-facing
 - **State**: active
-- **Security Group**: sg-0935e322c5774b1ed
+- **Security Group**: YOUR_SECURITY_GROUP_ID
 
 ## 🔍 Current Running Task
 
-**Task ARN**: arn:aws:ecs:us-east-1:119285101633:task/wordpress-cluster/98628e1f43874ff19fa5b3bef14d9d61
+**Task ARN**: arn:aws:ecs:us-east-1:YOUR_ACCOUNT_ID:task/wordpress-cluster/TASK_ID
 
 **Task Status**: RUNNING
 **Platform Version**: 1.4.0
@@ -43,7 +43,7 @@
 ## 🌐 Website Accessibility Test
 
 ```bash
-$ curl -I http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com
+$ curl -I http://YOUR_ALB_DNS_NAME
 
 HTTP/1.1 302 Found
 Date: Sun, 09 Nov 2025 07:11:34 GMT
@@ -52,7 +52,7 @@ Connection: keep-alive
 Server: Apache/2.4.65 (Debian)
 X-Powered-By: PHP/8.3.27
 X-Redirect-By: WordPress
-Location: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com/wp-admin/install.php
+Location: http://YOUR_ALB_DNS_NAME/wp-admin/install.php
 ```
 
 **✅ Status**: WordPress is responding correctly with HTTP 302 redirect to installation page
@@ -60,7 +60,7 @@ Location: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com/wp-admin/i
 ## 📱 Application Screenshots
 
 ### 1. WordPress Installation Page
-**URL**: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com/wp-admin/install.php
+**URL**: http://YOUR_ALB_DNS_NAME/wp-admin/install.php
 
 **Expected Content**:
 - WordPress installation wizard
@@ -69,7 +69,7 @@ Location: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com/wp-admin/i
 - Site title and admin user setup
 
 ### 2. WordPress Home Page (After Installation)
-**URL**: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com
+**URL**: http://YOUR_ALB_DNS_NAME
 
 **Expected Content**:
 - Default WordPress theme
@@ -77,7 +77,7 @@ Location: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com/wp-admin/i
 - WordPress branding and navigation
 
 ### 3. WordPress Admin Dashboard
-**URL**: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com/wp-admin/
+**URL**: http://YOUR_ALB_DNS_NAME/wp-admin/
 
 **Expected Content**:
 - WordPress admin login page
@@ -117,8 +117,8 @@ Location: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com/wp-admin/i
 - ✅ **ALB Protection**: Only ALB can access containers
 
 ### Security Groups
-- **ALB Security Group** (sg-0935e322c5774b1ed): Allows HTTP from internet
-- **Container Security Group** (sg-0af75bfdf1a9ce600): Allows traffic only from ALB
+- **ALB Security Group** (YOUR_SECURITY_GROUP_ID): Allows HTTP from internet
+- **Container Security Group** (YOUR_SECURITY_GROUP_ID): Allows traffic only from ALB
 
 ### Access Control
 - **IAM Role**: ecsTaskExecutionRole with minimal permissions
@@ -144,7 +144,7 @@ Location: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com/wp-admin/i
 ### Common Access Methods
 ```bash
 # Test website accessibility
-curl -I http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com
+curl -I http://YOUR_ALB_DNS_NAME
 
 # Check service status
 aws ecs describe-services --cluster wordpress-cluster --services wordpress-service --region us-east-1
@@ -185,13 +185,13 @@ aws logs get-log-events --log-group-name /ecs/wordpress --log-stream-name mysql/
 ## 📞 Support Information
 
 ### Application URLs
-- **Main Site**: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com
-- **Admin Panel**: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com/wp-admin/
-- **Installation**: http://wordpress-alb-1543208177.us-east-1.elb.amazonaws.com/wp-admin/install.php
+- **Main Site**: http://YOUR_ALB_DNS_NAME
+- **Admin Panel**: http://YOUR_ALB_DNS_NAME/wp-admin/
+- **Installation**: http://YOUR_ALB_DNS_NAME/wp-admin/install.php
 
 ### AWS Resources
 - **Region**: us-east-1
-- **VPC**: vpc-02ba04a37938bda68
+- **VPC**: YOUR_VPC_ID
 - **ECS Cluster**: wordpress-cluster
 - **Load Balancer**: wordpress-alb
 

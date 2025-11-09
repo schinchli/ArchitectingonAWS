@@ -176,7 +176,7 @@ Service: wordpress-service
 #### 4. **Task**
 Running instance of a task definition:
 ```yaml
-Task: 98628e1f43874ff19fa5b3bef14d9d61
+Task: YOUR_TASK_ID
 ├─ Status: RUNNING
 ├─ Containers: wordpress, mysql
 ├─ CPU Usage: 15%
@@ -355,7 +355,7 @@ Example:
 Security Layers:
 1. Internet Gateway (public access control)
 2. Security Groups (instance-level firewall)
-3. Network ACLs (subnet-level firewall)
+3. Network ACLs (YOUR_SUBNET_ID firewall)
 4. Application-level security
 ```
 
